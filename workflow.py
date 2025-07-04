@@ -31,15 +31,3 @@ memory = MemorySaver()
 app = workflow.compile(checkpointer=memory)
 
 config = {"configurable": {"thread_id": "abc123"}}
-
-print('This is Journey Game AI\nType go to start\nType quit to stop')
-
-while True:
-    query = input("Your choice: ")
-    if query.lower() == 'quit':
-        break
-    input_messages = [HumanMessage(query)]
-    output = app.invoke({"messages": input_messages}, config)
-    output["messages"][-1].pretty_print()
-    if 'The End' in output["messages"][-1].content:
-        break
